@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project-2</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Work Representation</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -12,31 +11,24 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- navbar -->
+    <!-- Navbar -->
     <header>
-      <nav class="navbar" aria-label="Main Navigation">
+      <nav class="navbar" aria-label="Main navigation">
         <a href="#home" class="logo">My Portfolio</a>
         <ul class="nav-links">
-          <li>
-            <a href="#home">Home</a>
-          </li>
-          <li>
-            <a href="#home">Work</a>
-          </li>
-          <li>
-            <a href="#home">Service</a>
-          </li>
-          <li>
-            <a href="#home">Contact</a>
-          </li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="theme-toggle" id="themeToggle" aria-label="theme-toggle">
+        <button class="theme-toggle" id="themeToggle" aria-label="Theme Toggle">
           🌙
         </button>
         <div class="hamburger">
-          <span></span>
           <span></span>
           <span></span>
           <span></span>
@@ -44,12 +36,12 @@
       </nav>
     </header>
 
-    <!-- hero section start -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="hero-text">
         <h1>21-Days-21-Projects</h1>
         <p>I'm a <span class="typed-text"></span></p>
-        <a href="#work" class="btn-primary" aria-label="view my Portfolio"
+        <a href="#work" class="btn-primary" aria-label="View my work portfolio"
           >View My Work</a
         >
         <div class="social-links">
@@ -87,7 +79,7 @@
       </div>
     </section>
 
-    <!-- recent work section -->
+    <!-- Recent Works -->
     <section id="work" class="recent-works">
       <h2>Recent Works</h2>
       <div class="work-grid">
@@ -99,57 +91,100 @@
           <div class="overlay">
             <h3>Restaurant Website</h3>
             <div class="buttons">
-              <a href="" class="btn" aria-label="View Live Demo">Live Demo</a>
-              <a href="" class="btn" aria-label="View Code">View Code</a>
+              <a
+                href="#"
+                class="btn"
+                aria-label="View live demo of Restaurant Website"
+                >Live Demo</a
+              >
+              <a
+                href="#"
+                class="btn-outline"
+                aria-label="View code of Restaurant Website"
+                >View Code</a
+              >
             </div>
           </div>
         </div>
+
         <div class="work-card">
           <img
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
             alt="Restaurant Website"
           />
           <div class="overlay">
-            <h3>Restaurant Website</h3>
+            <h3>Product Design</h3>
             <div class="buttons">
-              <a href="" class="btn" aria-label="View Live Demo">Live Demo</a>
-              <a href="" class="btn" aria-label="View Code">View Code</a>
+              <a
+                href="#"
+                class="btn"
+                aria-label="View live demo of Product Design"
+                >Live Demo</a
+              >
+              <a
+                href="#"
+                class="btn-outline"
+                aria-label="View code of Product Design"
+                >View Code</a
+              >
             </div>
           </div>
         </div>
+
         <div class="work-card">
           <img
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
             alt="Restaurant Website"
           />
           <div class="overlay">
-            <h3>Restaurant Website</h3>
+            <h3>SEO Dashboard</h3>
             <div class="buttons">
-              <a href="" class="btn" aria-label="View Live Demo">Live Demo</a>
-              <a href="" class="btn" aria-label="View Code">View Code</a>
+              <a
+                href="#"
+                class="btn"
+                aria-label="View live demo of SEO Dashboard"
+                >Live Demo</a
+              >
+              <a
+                href="#"
+                class="btn-outline"
+                aria-label="View code of SEO Dashboard"
+                >View Code</a
+              >
             </div>
           </div>
         </div>
+
         <div class="work-card">
           <img
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
             alt="Restaurant Website"
           />
           <div class="overlay">
-            <h3>Restaurant Website</h3>
+            <h3>Panel Design</h3>
             <div class="buttons">
-              <a href="" class="btn" aria-label="View Live Demo">Live Demo</a>
-              <a href="" class="btn" aria-label="View Code">View Code</a>
+              <a
+                href="#"
+                class="btn"
+                aria-label="View live demo of Panel Design"
+                >Live Demo</a
+              >
+              <a
+                href="#"
+                class="btn-outline"
+                aria-label="View code of Panel Design"
+                >View Code</a
+              >
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- services sections -->
+    <!-- Services Section -->
     <section id="services" class="services">
       <h2>Our Services</h2>
-      <div class="service-grid">
+      <div class="service-grid" role="list">
         <div class="service-card" role="listitem">
           <div class="service-icon">
             <i class="fas fa-code" aria-hidden="true"></i>
@@ -162,25 +197,85 @@
         </div>
         <div class="service-card" role="listitem">
           <div class="service-icon">
-            <i class="fas fa-code" aria-hidden="true"></i>
+            <i class="fas fa-paint-brush" aria-hidden="true"></i>
           </div>
-          <h3>Web Development</h3>
+          <h3>UI/UX Design</h3>
           <p>
-            We build responsive and high-performing websites using modern
-            technologies.
+            We create intuitive and visually appealing user interfaces for a
+            great user experience.
           </p>
         </div>
         <div class="service-card" role="listitem">
           <div class="service-icon">
-            <i class="fas fa-code" aria-hidden="true"></i>
+            <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
           </div>
-          <h3>Web Development</h3>
+          <h3>Training</h3>
           <p>
-            We build responsive and high-performing websites using modern
-            technologies.
+            We offer training on various software development topics to help you
+            level up your skills.
           </p>
         </div>
       </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <h2>What People Are Saying</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+            alt="Jane Doe"
+          />
+          <p>
+            "Vikas is a phenomenal developer. He is a great communicator and a
+            problem-solver. I would recommend him to anyone looking for a
+            top-notch engineer."
+          </p>
+          <h4>Jane Doe</h4>
+          <span>Software Engineer, Google</span>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+            alt="John Smith"
+          />
+          <p>
+            "I had the pleasure of working with Vikas on a complex project. His
+            technical skills and dedication were instrumental in our success. He
+            is a true asset to any team."
+          </p>
+          <h4>John Smith</h4>
+          <span>Project Manager, Microsoft</span>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=400&q=80"
+            alt="Peter Jones"
+          />
+          <p>
+            "Vikas is an excellent instructor. He has a knack for explaining
+            complex topics in a simple and engaging way. I learned a lot from
+            his course."
+          </p>
+          <h4>Peter Jones</h4>
+          <span>Student</span>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+            alt="Mary Johnson"
+          />
+          <p>
+            "The best teacher I've ever had. Vikas is patient, knowledgeable,
+            and passionate about teaching. I highly recommend his classes."
+          </p>
+          <h4>Mary Johnson</h4>
+          <span>Student</span>
+        </div>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
   </body>
 </html>
