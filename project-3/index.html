@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manager Tool</title>
 
     <!-- Bootstrap 5 -->
     <link
@@ -19,22 +19,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <style>
+      /* Minimal adjustments for layout that Bootstrap utilities can't perfectly cover in 5.3 without custom builds */
       .sidebar {
         width: 280px;
         min-height: 100vh;
       }
 
+      /* Smooth theme transition */
       body,
+      .card,
       .sidebar,
-      .navbar {
-        transition: background-color 0.3s ease border 0.3s border-color 0.3s;
+      .navbar,
+      .modal-content {
+        transition:
+          background-color 0.3s,
+          color 0.3s,
+          border-color 0.3s;
       }
     </style>
   </head>
 
   <body class="bg-body-secondary">
-
-<div id="wrapper" class="d-flex">
+    <div class="d-flex" id="wrapper">
       <!-- Sidebar -->
       <div
         class="sidebar bg-body-tertiary border-end p-3 d-none d-lg-flex flex-column flex-shrink-0 position-fixed top-0 start-0 z-3"
@@ -243,10 +249,9 @@
           </div>
         </header>
 
-        <!-- main content -->
-
+        <!-- Main Content Container -->
         <main class="container-fluid px-4 pb-5">
-          <!-- kpi cards -->
+          <!-- KPI Cards -->
           <div class="row g-4 mb-4">
             <div class="col-sm-6 col-xl-3">
               <div class="card border-0 shadow-sm h-100 rounded-4">
@@ -286,22 +291,22 @@
                     <h6
                       class="text-body-secondary text-uppercase fw-semibold small"
                     >
-                      Total Resources
+                      Active Projects
                     </h6>
                     <div
-                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      class="bg-success-subtle text-success rounded-circle p-2 d-flex align-items-center justify-content-center"
                       style="width: 32px; height: 32px"
                     >
-                      <i class="fa-solid fa-users"></i>
+                      <i class="fa-solid fa-diagram-project"></i>
                     </div>
                   </div>
-                  <h3 class="fw-bold mb-1">128</h3>
+                  <h3 class="fw-bold mb-1">24</h3>
                   <div class="d-flex align-items-center">
                     <span
-                      class="badge bg-success-subtle text-success rounded-pill me-2"
-                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                      class="badge bg-primary-subtle text-primary rounded-pill me-2"
+                      >4 New</span
                     >
-                    <span class="small text-body-secondary">vs last month</span>
+                    <span class="small text-body-secondary">launched</span>
                   </div>
                 </div>
               </div>
@@ -315,22 +320,22 @@
                     <h6
                       class="text-body-secondary text-uppercase fw-semibold small"
                     >
-                      Total Resources
+                      Avg Utilization
                     </h6>
                     <div
-                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      class="bg-warning-subtle text-warning rounded-circle p-2 d-flex align-items-center justify-content-center"
                       style="width: 32px; height: 32px"
                     >
-                      <i class="fa-solid fa-users"></i>
+                      <i class="fa-solid fa-chart-line"></i>
                     </div>
                   </div>
-                  <h3 class="fw-bold mb-1">128</h3>
+                  <h3 class="fw-bold mb-1">82%</h3>
                   <div class="d-flex align-items-center">
                     <span
-                      class="badge bg-success-subtle text-success rounded-pill me-2"
-                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                      class="badge bg-warning-subtle text-warning rounded-pill me-2"
+                      >Stable</span
                     >
-                    <span class="small text-body-secondary">vs last month</span>
+                    <span class="small text-body-secondary">trend</span>
                   </div>
                 </div>
               </div>
@@ -344,29 +349,31 @@
                     <h6
                       class="text-body-secondary text-uppercase fw-semibold small"
                     >
-                      Total Resources
+                      On Bench
                     </h6>
                     <div
-                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      class="bg-danger-subtle text-danger rounded-circle p-2 d-flex align-items-center justify-content-center"
                       style="width: 32px; height: 32px"
                     >
-                      <i class="fa-solid fa-users"></i>
+                      <i class="fa-solid fa-user-clock"></i>
                     </div>
                   </div>
-                  <h3 class="fw-bold mb-1">128</h3>
+                  <h3 class="fw-bold mb-1">14</h3>
                   <div class="d-flex align-items-center">
                     <span
-                      class="badge bg-success-subtle text-success rounded-pill me-2"
-                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                      class="badge bg-danger-subtle text-danger rounded-pill me-2"
+                      >High</span
                     >
-                    <span class="small text-body-secondary">vs last month</span>
+                    <span class="small text-body-secondary"
+                      >needs allocation</span
+                    >
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- chart section -->
+          <!-- Chart and Table -->
           <div class="row g-4 mb-5">
             <div class="col-lg-7">
               <div class="card border-0 shadow-sm h-100 rounded-4">
@@ -378,7 +385,6 @@
                 </div>
               </div>
             </div>
-            <!-- col-5 row -->
             <div class="col-lg-5">
               <div class="card border-0 shadow-sm h-100 rounded-4">
                 <div
@@ -497,24 +503,23 @@
             </div>
           </div>
 
-          <!-- active project section -->
-
+          <!-- Projects Section -->
           <div
             class="d-flex justify-content-between align-items-center mb-4"
             id="projects"
           >
-            <h4 class="fw-bold mb-0">Active Project</h4>
+            <h4 class="fw-bold mb-0">Active Projects</h4>
             <button
               class="btn btn-primary rounded-pill px-4"
               data-bs-toggle="modal"
-              data-bs-target="#addProjectsModal"
+              data-bs-target="#addProjectModal"
             >
               <i class="fa-solid fa-plus me-2"></i> New Project
             </button>
           </div>
 
           <div class="row g-4 mb-5" id="projectGrid">
-            <!-- project-1 -->
+            <!-- Project 1 -->
             <div class="col-md-6 col-lg-4">
               <div class="card border-0 shadow-sm h-100 rounded-4">
                 <div class="card-body">
@@ -600,6 +605,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Project 2 -->
             <div class="col-md-6 col-lg-4">
               <div class="card border-0 shadow-sm h-100 rounded-4">
                 <div class="card-body">
@@ -607,10 +614,10 @@
                     class="d-flex justify-content-between align-items-start mb-3"
                   >
                     <div>
-                      <h5 class="card-title fw-bold mb-1">Payments Revamp</h5>
+                      <h5 class="card-title fw-bold mb-1">AI Insights</h5>
                       <span
-                        class="badge bg-primary-subtle text-primary border border-primary-subtle"
-                        >Backend Team</span
+                        class="badge bg-success-subtle text-success border border-success-subtle"
+                        >Data Science</span
                       >
                     </div>
                     <div class="dropdown">
@@ -621,14 +628,12 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Edit</a></li>
-                        <li><a class="dropdown-item" href="#">Details</a></li>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
                       </ul>
                     </div>
                   </div>
                   <p class="card-text text-body-secondary small">
-                    Overhauling the payment gateway integration for better
-                    global support.
+                    Predictive analytics dashboard for customer retention.
                   </p>
 
                   <div
@@ -637,22 +642,25 @@
                     <div class="w-100 me-3">
                       <div class="d-flex justify-content-between mb-1">
                         <span class="small fw-medium">Progress</span>
-                        <span class="small fw-bold">80%</span>
+                        <span class="small fw-bold">65%</span>
                       </div>
                       <div
                         class="progress"
                         role="progressbar"
                         style="height: 6px"
                       >
-                        <div class="progress-bar" style="width: 80%"></div>
+                        <div
+                          class="progress-bar bg-success"
+                          style="width: 65%"
+                        ></div>
                       </div>
                     </div>
                     <div
                       class="bg-body-secondary rounded p-2 text-center"
                       style="min-width: 60px"
                     >
-                      <div class="small fw-bold">DEC</div>
-                      <div class="fw-bold small text-muted">2025</div>
+                      <div class="small fw-bold">JAN</div>
+                      <div class="fw-bold small text-muted">2026</div>
                     </div>
                   </div>
                 </div>
@@ -660,31 +668,26 @@
                   <div class="d-flex align-items-center">
                     <div class="avatar-group d-flex">
                       <img
-                        src="https://i.pravatar.cc/100?img=1"
+                        src="https://i.pravatar.cc/100?img=4"
                         class="rounded-circle border border-2 border-body translate-middle-x"
                         width="30"
                         height="30"
                       />
                       <img
-                        src="https://i.pravatar.cc/100?img=2"
-                        class="rounded-circle border border-2 border-body translate-middle-x ms-n2"
-                        width="30"
-                        height="30"
-                        style="margin-left: -10px"
-                      />
-                      <img
-                        src="https://i.pravatar.cc/100?img=3"
+                        src="https://i.pravatar.cc/100?img=5"
                         class="rounded-circle border border-2 border-body translate-middle-x ms-n2"
                         width="30"
                         height="30"
                         style="margin-left: -10px"
                       />
                     </div>
-                    <span class="small text-muted ms-2">+5 others</span>
+                    <span class="small text-muted ms-2">+2 others</span>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Project 3 -->
             <div class="col-md-6 col-lg-4">
               <div class="card border-0 shadow-sm h-100 rounded-4">
                 <div class="card-body">
@@ -692,10 +695,10 @@
                     class="d-flex justify-content-between align-items-start mb-3"
                   >
                     <div>
-                      <h5 class="card-title fw-bold mb-1">Payments Revamp</h5>
+                      <h5 class="card-title fw-bold mb-1">Infrastructure Up</h5>
                       <span
-                        class="badge bg-primary-subtle text-primary border border-primary-subtle"
-                        >Backend Team</span
+                        class="badge bg-warning-subtle text-warning border border-warning-subtle"
+                        >DevOps</span
                       >
                     </div>
                     <div class="dropdown">
@@ -706,14 +709,12 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Edit</a></li>
-                        <li><a class="dropdown-item" href="#">Details</a></li>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
                       </ul>
                     </div>
                   </div>
                   <p class="card-text text-body-secondary small">
-                    Overhauling the payment gateway integration for better
-                    global support.
+                    Migrating legacy servers to containerized orchestration.
                   </p>
 
                   <div
@@ -722,22 +723,25 @@
                     <div class="w-100 me-3">
                       <div class="d-flex justify-content-between mb-1">
                         <span class="small fw-medium">Progress</span>
-                        <span class="small fw-bold">80%</span>
+                        <span class="small fw-bold">50%</span>
                       </div>
                       <div
                         class="progress"
                         role="progressbar"
                         style="height: 6px"
                       >
-                        <div class="progress-bar" style="width: 80%"></div>
+                        <div
+                          class="progress-bar bg-warning"
+                          style="width: 50%"
+                        ></div>
                       </div>
                     </div>
                     <div
                       class="bg-body-secondary rounded p-2 text-center"
                       style="min-width: 60px"
                     >
-                      <div class="small fw-bold">DEC</div>
-                      <div class="fw-bold small text-muted">2025</div>
+                      <div class="small fw-bold">FEB</div>
+                      <div class="fw-bold small text-muted">2026</div>
                     </div>
                   </div>
                 </div>
@@ -745,348 +749,372 @@
                   <div class="d-flex align-items-center">
                     <div class="avatar-group d-flex">
                       <img
-                        src="https://i.pravatar.cc/100?img=1"
+                        src="https://i.pravatar.cc/100?img=8"
                         class="rounded-circle border border-2 border-body translate-middle-x"
                         width="30"
                         height="30"
                       />
-                      <img
-                        src="https://i.pravatar.cc/100?img=2"
-                        class="rounded-circle border border-2 border-body translate-middle-x ms-n2"
-                        width="30"
-                        height="30"
-                        style="margin-left: -10px"
-                      />
-                      <img
-                        src="https://i.pravatar.cc/100?img=3"
-                        class="rounded-circle border border-2 border-body translate-middle-x ms-n2"
-                        width="30"
-                        height="30"
-                        style="margin-left: -10px"
-                      />
                     </div>
-                    <span class="small text-muted ms-2">+5 others</span>
+                    <span class="small text-muted ms-2">Lead only</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-
-          <!-- report section -->
+          <!-- Reports Section (Restored) -->
           <div class="d-flex align-items-center mb-4" id="reports">
-          <h4 class="fw-bold mb-0">Reports & Analytics</h4>
-        </div>
-        <div class="row g-4 mb-4">
-          <div class="col-md-7">
-            <div class="card border-0 shadow-sm h-100 rounded-4">
-              <div class="card-header bg-transparent border-0 pt-4 px-4">
-                <h5 class="fw-bold mb-0">Project Performance</h5>
+            <h4 class="fw-bold mb-0">Reports & Analytics</h4>
+          </div>
+          <div class="row g-4 mb-4">
+            <div class="col-md-7">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                  <h5 class="fw-bold mb-0">Project Performance</h5>
+                </div>
+                <div class="card-body px-4 pb-4">
+                  <canvas id="reportBar"></canvas>
+                </div>
               </div>
-              <div class="card-body px-4 pb-4">
-                <canvas id="reportBar"></canvas>
+            </div>
+            <div class="col-md-5">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                  <h5 class="fw-bold mb-0">Resource Distribution</h5>
+                </div>
+                <div class="card-body px-4 pb-4">
+                  <canvas id="reportPie"></canvas>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-5">
-            <div class="card border-0 shadow-sm h-100 rounded-4">
-              <div class="card-header bg-transparent border-0 pt-4 px-4">
-                <h5 class="fw-bold mb-0">Resource Distribution</h5>
-              </div>
-              <div class="card-body px-4 pb-4">
-                <canvas id="reportPie"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
         </main>
+      </div>
     </div>
-    <!-- modal -->
-     <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 shadow">
-        <div class="modal-header border-bottom-0 pb-0">
-          <h5 class="modal-title fw-bold">Create New Project</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body pt-4">
-          <form id="addProjectForm">
-            <div class="mb-3">
-              <label class="form-label fw-medium">Project Name</label>
-              <input type="text" class="form-control bg-body-tertiary" id="projectName"
-                placeholder="e.g. Cloud Migration" required />
-            </div>
-            <div class="row g-3 mb-3">
-              <div class="col-md-6">
-                <label class="form-label fw-medium">Team</label>
-                <select class="form-select bg-body-tertiary" id="projectTeam">
-                  <option value="Backend">Backend</option>
-                  <option value="Frontend">Frontend</option>
-                  <option value="DevOps">DevOps</option>
-                  <option value="Data Science">Data Science</option>
-                </select>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addProjectModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header border-bottom-0 pb-0">
+            <h5 class="modal-title fw-bold">Create New Project</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pt-4">
+            <form id="addProjectForm">
+              <div class="mb-3">
+                <label class="form-label fw-medium">Project Name</label>
+                <input
+                  type="text"
+                  class="form-control bg-body-tertiary"
+                  id="projectName"
+                  placeholder="e.g. Cloud Migration"
+                  required
+                />
               </div>
-              <div class="col-md-6">
-                <label class="form-label fw-medium">Due Date</label>
-                <input type="month" class="form-control bg-body-tertiary" id="projectDue" required />
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Team</label>
+                  <select class="form-select bg-body-tertiary" id="projectTeam">
+                    <option value="Backend">Backend</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="Data Science">Data Science</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Due Date</label>
+                  <input
+                    type="month"
+                    class="form-control bg-body-tertiary"
+                    id="projectDue"
+                    required
+                  />
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label fw-medium">Current Progress</label>
-              <input type="range" class="form-range" id="projectProgress" min="0" max="100" value="0"
-                oninput="this.nextElementSibling.value = this.value + '%'" />
-              <output class="fw-bold small">0%</output>
-            </div>
-            <div class="mb-3">
-              <label class="form-label fw-medium">Description</label>
-              <textarea class="form-control bg-body-tertiary" id="projectDescription" rows="3"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer border-top-0 pt-0">
-          <button type="button" class="btn btn-link text-decoration-none text-body-secondary" data-bs-dismiss="modal">
-            Cancel
-          </button>
-          <button type="button" class="btn btn-primary rounded-pill px-4" id="saveProjectBtn">
-            Create Project
-          </button>
+              <div class="mb-3">
+                <label class="form-label fw-medium">Current Progress</label>
+                <input
+                  type="range"
+                  class="form-range"
+                  id="projectProgress"
+                  min="0"
+                  max="100"
+                  value="0"
+                  oninput="this.nextElementSibling.value = this.value + '%'"
+                />
+                <output class="fw-bold small">0%</output>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-medium">Description</label>
+                <textarea
+                  class="form-control bg-body-tertiary"
+                  id="projectDescription"
+                  rows="3"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button
+              type="button"
+              class="btn btn-link text-decoration-none text-body-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary rounded-pill px-4"
+              id="saveProjectBtn"
+            >
+              Create Project
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Wrap in DOMContentLoaded to ensure elements exist
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- THEME LOGIC ---
+        const getStoredTheme = () => localStorage.getItem("theme") || "dark";
 
+        const setTheme = (theme) => {
+          document.documentElement.setAttribute("data-bs-theme", theme);
+          localStorage.setItem("theme", theme);
 
-  <!-- Bootstrap Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Wrap in DOMContentLoaded to ensure elements exist
-    document.addEventListener("DOMContentLoaded", () => {
-      // --- THEME LOGIC ---
-      const getStoredTheme = () => localStorage.getItem("theme") || "dark";
-
-      const setTheme = (theme) => {
-        document.documentElement.setAttribute("data-bs-theme", theme);
-        localStorage.setItem("theme", theme);
-
-        const icon = document.getElementById("themeIcon");
-        if (icon) {
-          // Check if icon exists before manipulating
-          if (theme === "dark") {
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
-          } else {
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
+          const icon = document.getElementById("themeIcon");
+          if (icon) {
+            // Check if icon exists before manipulating
+            if (theme === "dark") {
+              icon.classList.remove("fa-sun");
+              icon.classList.add("fa-moon");
+            } else {
+              icon.classList.remove("fa-moon");
+              icon.classList.add("fa-sun");
+            }
           }
-        }
 
-        if (typeof updateCharts === "function") {
-          updateCharts(theme);
-        }
-      };
-
-      // --- CHART HELPERS ---
-      const getChartColors = (theme) => {
-        const isDark = theme === "dark";
-        return {
-          grid: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
-          text: isDark ? "#adb5bd" : "#6c757d",
+          if (typeof updateCharts === "function") {
+            updateCharts(theme);
+          }
         };
-      };
 
-      // Chart instances
-      let utilChart, reportBar, reportPie;
+        // --- CHART HELPERS ---
+        const getChartColors = (theme) => {
+          const isDark = theme === "dark";
+          return {
+            grid: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+            text: isDark ? "#adb5bd" : "#6c757d",
+          };
+        };
 
-      const updateCharts = (theme) => {
-        const colors = getChartColors(theme);
+        // Chart instances
+        let utilChart, reportBar, reportPie;
 
-        if (utilChart) {
-          utilChart.options.scales.y.grid.color = colors.grid;
-          utilChart.options.scales.y.ticks.color = colors.text;
-          // x-axis doesn't have grid in config, just ticks
-          utilChart.options.scales.x.ticks.color = colors.text;
-          utilChart.update();
-        }
-        if (reportBar) {
-          reportBar.options.scales.y.grid.color = colors.grid;
-          reportBar.options.scales.y.ticks.color = colors.text;
-          reportBar.options.scales.x.ticks.color = colors.text;
-          reportBar.update();
-        }
-        // Pie chart doesn't need grid/text update usually, but can update border if needed
-        if (reportPie) {
-          reportPie.update();
-        }
-      };
+        const updateCharts = (theme) => {
+          const colors = getChartColors(theme);
 
-      // --- INITIALIZE CHARTS ---
-      const initCharts = () => {
-        const theme = getStoredTheme();
-        const colors = getChartColors(theme);
+          if (utilChart) {
+            utilChart.options.scales.y.grid.color = colors.grid;
+            utilChart.options.scales.y.ticks.color = colors.text;
+            // x-axis doesn't have grid in config, just ticks
+            utilChart.options.scales.x.ticks.color = colors.text;
+            utilChart.update();
+          }
+          if (reportBar) {
+            reportBar.options.scales.y.grid.color = colors.grid;
+            reportBar.options.scales.y.ticks.color = colors.text;
+            reportBar.options.scales.x.ticks.color = colors.text;
+            reportBar.update();
+          }
+          // Pie chart doesn't need grid/text update usually, but can update border if needed
+          if (reportPie) {
+            reportPie.update();
+          }
+        };
 
-        // 1. Utilization
-        const ctx = document.getElementById("utilChart");
-        if (ctx) {
-          utilChart = new Chart(ctx, {
-            type: "line",
-            data: {
-              labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct"],
-              datasets: [
-                {
-                  label: "Overall utilization",
-                  data: [62, 68, 71, 73, 76, 84],
-                  tension: 0.4,
-                  fill: true,
-                  backgroundColor: "rgba(13,110,253,0.1)",
-                  borderColor: "#0d6efd",
-                  pointBackgroundColor: "#0d6efd",
-                  pointBorderColor: "#fff",
-                  pointRadius: 4,
-                  pointHoverRadius: 6,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: { legend: { display: false } },
-              scales: {
-                y: {
-                  beginAtZero: false,
-                  min: 40,
-                  max: 100,
-                  grid: { color: colors.grid },
-                  ticks: { color: colors.text },
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: colors.text },
+        // --- INITIALIZE CHARTS ---
+        const initCharts = () => {
+          const theme = getStoredTheme();
+          const colors = getChartColors(theme);
+
+          // 1. Utilization
+          const ctx = document.getElementById("utilChart");
+          if (ctx) {
+            utilChart = new Chart(ctx, {
+              type: "line",
+              data: {
+                labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+                datasets: [
+                  {
+                    label: "Overall utilization",
+                    data: [62, 68, 71, 73, 76, 84],
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: "rgba(13,110,253,0.1)",
+                    borderColor: "#0d6efd",
+                    pointBackgroundColor: "#0d6efd",
+                    pointBorderColor: "#fff",
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: {
+                    beginAtZero: false,
+                    min: 40,
+                    max: 100,
+                    grid: { color: colors.grid },
+                    ticks: { color: colors.text },
+                  },
+                  x: {
+                    grid: { display: false },
+                    ticks: { color: colors.text },
+                  },
                 },
               },
-            },
-          });
-        }
-
-        // 2. Report Bar
-        const barCtx = document.getElementById("reportBar");
-        if (barCtx) {
-          reportBar = new Chart(barCtx, {
-            type: "bar",
-            data: {
-              labels: ["Payments", "Analytics", "Infra", "AI", "CRM"],
-              datasets: [
-                {
-                  label: "Efficiency (%)",
-                  data: [82, 76, 88, 91, 73],
-                  backgroundColor: "rgba(13,110,253,0.7)",
-                  borderRadius: 4,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: { legend: { display: false } },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  max: 100,
-                  grid: { color: colors.grid },
-                  ticks: { color: colors.text },
-                },
-                x: {
-                  grid: { display: false },
-                  ticks: { color: colors.text },
-                },
-              },
-            },
-          });
-        }
-
-        // 3. Report Pie
-        const pieCtx = document.getElementById("reportPie");
-        if (pieCtx) {
-          reportPie = new Chart(pieCtx, {
-            type: "doughnut",
-            data: {
-              labels: ["Frontend", "Backend", "Data Science", "QA", "DevOps"],
-              datasets: [
-                {
-                  data: [25, 30, 20, 15, 10],
-                  backgroundColor: [
-                    "rgba(13,110,253,0.8)",
-                    "rgba(25,135,84,0.8)",
-                    "rgba(255,193,7,0.8)",
-                    "rgba(220,53,69,0.8)",
-                    "rgba(102,16,242,0.8)",
-                  ],
-                  borderWidth: 0,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "bottom",
-                  labels: { usePointStyle: true },
-                },
-              },
-            },
-          });
-        }
-      };
-
-      // --- EXECUTION ORDER ---
-      setTheme(getStoredTheme()); // 1. Set styles
-      initCharts(); // 2. Create charts with correct styles
-
-      // --- EVENT LISTENERS ---
-      const toggleBtn = document.getElementById("themeToggle");
-      if (toggleBtn) {
-        toggleBtn.addEventListener("click", () => {
-          const currentTheme =
-            document.documentElement.getAttribute("data-bs-theme");
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          setTheme(newTheme);
-        });
-      }
-
-      // Add Project Logic
-      const saveBtn = document.getElementById("saveProjectBtn");
-      if (saveBtn) {
-        saveBtn.addEventListener("click", function () {
-          const name = document.getElementById("projectName").value;
-          const team = document.getElementById("projectTeam").value;
-          const progressVal =
-            document.getElementById("projectProgress").value;
-          const due = document.getElementById("projectDue").value;
-          const desc = document.getElementById("projectDescription").value;
-
-          if (!name || !due) {
-            alert("Please fill in required fields.");
-            return;
+            });
           }
 
-          // Determine badge color
-          let badgeClass = "bg-secondary-subtle text-secondary";
-          if (team === "Backend")
-            badgeClass = "bg-primary-subtle text-primary";
-          if (team === "Data Science")
-            badgeClass = "bg-success-subtle text-success";
-          if (team === "DevOps")
-            badgeClass = "bg-warning-subtle text-warning";
+          // 2. Report Bar
+          const barCtx = document.getElementById("reportBar");
+          if (barCtx) {
+            reportBar = new Chart(barCtx, {
+              type: "bar",
+              data: {
+                labels: ["Payments", "Analytics", "Infra", "AI", "CRM"],
+                datasets: [
+                  {
+                    label: "Efficiency (%)",
+                    data: [82, 76, 88, 91, 73],
+                    backgroundColor: "rgba(13,110,253,0.7)",
+                    borderRadius: 4,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: colors.grid },
+                    ticks: { color: colors.text },
+                  },
+                  x: {
+                    grid: { display: false },
+                    ticks: { color: colors.text },
+                  },
+                },
+              },
+            });
+          }
 
-          // Parse Date
-          const dateDate = new Date(due);
-          const month = dateDate
-            .toLocaleString("default", { month: "short" })
-            .toUpperCase();
-          const year = dateDate.getFullYear();
+          // 3. Report Pie
+          const pieCtx = document.getElementById("reportPie");
+          if (pieCtx) {
+            reportPie = new Chart(pieCtx, {
+              type: "doughnut",
+              data: {
+                labels: ["Frontend", "Backend", "Data Science", "QA", "DevOps"],
+                datasets: [
+                  {
+                    data: [25, 30, 20, 15, 10],
+                    backgroundColor: [
+                      "rgba(13,110,253,0.8)",
+                      "rgba(25,135,84,0.8)",
+                      "rgba(255,193,7,0.8)",
+                      "rgba(220,53,69,0.8)",
+                      "rgba(102,16,242,0.8)",
+                    ],
+                    borderWidth: 0,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                    labels: { usePointStyle: true },
+                  },
+                },
+              },
+            });
+          }
+        };
 
-          const newCard = `
+        // --- EXECUTION ORDER ---
+        setTheme(getStoredTheme()); // 1. Set styles
+        initCharts(); // 2. Create charts with correct styles
+
+        // --- EVENT LISTENERS ---
+        const toggleBtn = document.getElementById("themeToggle");
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", () => {
+            const currentTheme =
+              document.documentElement.getAttribute("data-bs-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            setTheme(newTheme);
+          });
+        }
+
+        // Add Project Logic
+        const saveBtn = document.getElementById("saveProjectBtn");
+        if (saveBtn) {
+          saveBtn.addEventListener("click", function () {
+            const name = document.getElementById("projectName").value;
+            const team = document.getElementById("projectTeam").value;
+            const progressVal =
+              document.getElementById("projectProgress").value;
+            const due = document.getElementById("projectDue").value;
+            const desc = document.getElementById("projectDescription").value;
+
+            if (!name || !due) {
+              alert("Please fill in required fields.");
+              return;
+            }
+
+            // Determine badge color
+            let badgeClass = "bg-secondary-subtle text-secondary";
+            if (team === "Backend")
+              badgeClass = "bg-primary-subtle text-primary";
+            if (team === "Data Science")
+              badgeClass = "bg-success-subtle text-success";
+            if (team === "DevOps")
+              badgeClass = "bg-warning-subtle text-warning";
+
+            // Parse Date
+            const dateDate = new Date(due);
+            const month = dateDate
+              .toLocaleString("default", { month: "short" })
+              .toUpperCase();
+            const year = dateDate.getFullYear();
+
+            const newCard = `
                           <div class="col-md-6 col-lg-4">
                              <div class="card border-0 shadow-sm h-100 rounded-4">
                                  <div class="card-body">
@@ -1127,18 +1155,18 @@
                           </div>
                     `;
 
-          const grid = document.getElementById("projectGrid");
-          if (grid) grid.insertAdjacentHTML("beforeend", newCard);
+            const grid = document.getElementById("projectGrid");
+            if (grid) grid.insertAdjacentHTML("beforeend", newCard);
 
-          const modalEl = document.getElementById("addProjectModal");
-          if (modalEl) {
-            const modal = bootstrap.Modal.getInstance(modalEl);
-            if (modal) modal.hide();
-          }
-          document.getElementById("addProjectForm").reset();
-        });
-      }
-    });
-  </script>
+            const modalEl = document.getElementById("addProjectModal");
+            if (modalEl) {
+              const modal = bootstrap.Modal.getInstance(modalEl);
+              if (modal) modal.hide();
+            }
+            document.getElementById("addProjectForm").reset();
+          });
+        }
+      });
+    </script>
   </body>
 </html>
