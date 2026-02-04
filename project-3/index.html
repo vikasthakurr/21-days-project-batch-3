@@ -33,7 +33,8 @@
   </head>
 
   <body class="bg-body-secondary">
-    <div id="wrapper" class="d-flex">
+
+<div id="wrapper" class="d-flex">
       <!-- Sidebar -->
       <div
         class="sidebar bg-body-tertiary border-end p-3 d-none d-lg-flex flex-column flex-shrink-0 position-fixed top-0 start-0 z-3"
@@ -853,5 +854,291 @@
       </div>
     </div>
   </div>
+
+
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Wrap in DOMContentLoaded to ensure elements exist
+    document.addEventListener("DOMContentLoaded", () => {
+      // --- THEME LOGIC ---
+      const getStoredTheme = () => localStorage.getItem("theme") || "dark";
+
+      const setTheme = (theme) => {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+        localStorage.setItem("theme", theme);
+
+        const icon = document.getElementById("themeIcon");
+        if (icon) {
+          // Check if icon exists before manipulating
+          if (theme === "dark") {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+          } else {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+          }
+        }
+
+        if (typeof updateCharts === "function") {
+          updateCharts(theme);
+        }
+      };
+
+      // --- CHART HELPERS ---
+      const getChartColors = (theme) => {
+        const isDark = theme === "dark";
+        return {
+          grid: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+          text: isDark ? "#adb5bd" : "#6c757d",
+        };
+      };
+
+      // Chart instances
+      let utilChart, reportBar, reportPie;
+
+      const updateCharts = (theme) => {
+        const colors = getChartColors(theme);
+
+        if (utilChart) {
+          utilChart.options.scales.y.grid.color = colors.grid;
+          utilChart.options.scales.y.ticks.color = colors.text;
+          // x-axis doesn't have grid in config, just ticks
+          utilChart.options.scales.x.ticks.color = colors.text;
+          utilChart.update();
+        }
+        if (reportBar) {
+          reportBar.options.scales.y.grid.color = colors.grid;
+          reportBar.options.scales.y.ticks.color = colors.text;
+          reportBar.options.scales.x.ticks.color = colors.text;
+          reportBar.update();
+        }
+        // Pie chart doesn't need grid/text update usually, but can update border if needed
+        if (reportPie) {
+          reportPie.update();
+        }
+      };
+
+      // --- INITIALIZE CHARTS ---
+      const initCharts = () => {
+        const theme = getStoredTheme();
+        const colors = getChartColors(theme);
+
+        // 1. Utilization
+        const ctx = document.getElementById("utilChart");
+        if (ctx) {
+          utilChart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+              datasets: [
+                {
+                  label: "Overall utilization",
+                  data: [62, 68, 71, 73, 76, 84],
+                  tension: 0.4,
+                  fill: true,
+                  backgroundColor: "rgba(13,110,253,0.1)",
+                  borderColor: "#0d6efd",
+                  pointBackgroundColor: "#0d6efd",
+                  pointBorderColor: "#fff",
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  min: 40,
+                  max: 100,
+                  grid: { color: colors.grid },
+                  ticks: { color: colors.text },
+                },
+                x: {
+                  grid: { display: false },
+                  ticks: { color: colors.text },
+                },
+              },
+            },
+          });
+        }
+
+        // 2. Report Bar
+        const barCtx = document.getElementById("reportBar");
+        if (barCtx) {
+          reportBar = new Chart(barCtx, {
+            type: "bar",
+            data: {
+              labels: ["Payments", "Analytics", "Infra", "AI", "CRM"],
+              datasets: [
+                {
+                  label: "Efficiency (%)",
+                  data: [82, 76, 88, 91, 73],
+                  backgroundColor: "rgba(13,110,253,0.7)",
+                  borderRadius: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 100,
+                  grid: { color: colors.grid },
+                  ticks: { color: colors.text },
+                },
+                x: {
+                  grid: { display: false },
+                  ticks: { color: colors.text },
+                },
+              },
+            },
+          });
+        }
+
+        // 3. Report Pie
+        const pieCtx = document.getElementById("reportPie");
+        if (pieCtx) {
+          reportPie = new Chart(pieCtx, {
+            type: "doughnut",
+            data: {
+              labels: ["Frontend", "Backend", "Data Science", "QA", "DevOps"],
+              datasets: [
+                {
+                  data: [25, 30, 20, 15, 10],
+                  backgroundColor: [
+                    "rgba(13,110,253,0.8)",
+                    "rgba(25,135,84,0.8)",
+                    "rgba(255,193,7,0.8)",
+                    "rgba(220,53,69,0.8)",
+                    "rgba(102,16,242,0.8)",
+                  ],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: "bottom",
+                  labels: { usePointStyle: true },
+                },
+              },
+            },
+          });
+        }
+      };
+
+      // --- EXECUTION ORDER ---
+      setTheme(getStoredTheme()); // 1. Set styles
+      initCharts(); // 2. Create charts with correct styles
+
+      // --- EVENT LISTENERS ---
+      const toggleBtn = document.getElementById("themeToggle");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          const currentTheme =
+            document.documentElement.getAttribute("data-bs-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          setTheme(newTheme);
+        });
+      }
+
+      // Add Project Logic
+      const saveBtn = document.getElementById("saveProjectBtn");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          const name = document.getElementById("projectName").value;
+          const team = document.getElementById("projectTeam").value;
+          const progressVal =
+            document.getElementById("projectProgress").value;
+          const due = document.getElementById("projectDue").value;
+          const desc = document.getElementById("projectDescription").value;
+
+          if (!name || !due) {
+            alert("Please fill in required fields.");
+            return;
+          }
+
+          // Determine badge color
+          let badgeClass = "bg-secondary-subtle text-secondary";
+          if (team === "Backend")
+            badgeClass = "bg-primary-subtle text-primary";
+          if (team === "Data Science")
+            badgeClass = "bg-success-subtle text-success";
+          if (team === "DevOps")
+            badgeClass = "bg-warning-subtle text-warning";
+
+          // Parse Date
+          const dateDate = new Date(due);
+          const month = dateDate
+            .toLocaleString("default", { month: "short" })
+            .toUpperCase();
+          const year = dateDate.getFullYear();
+
+          const newCard = `
+                          <div class="col-md-6 col-lg-4">
+                             <div class="card border-0 shadow-sm h-100 rounded-4">
+                                 <div class="card-body">
+                                      <div class="d-flex justify-content-between align-items-start mb-3">
+                                          <div>
+                                              <h5 class="card-title fw-bold mb-1">${name}</h5>
+                                              <span class="badge ${badgeClass} border border-opacity-10">${team}</span>
+                                          </div>
+                                          <div class="dropdown">
+                                              <button class="btn btn-link text-body-secondary p-0" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                              <ul class="dropdown-menu"><li><a class="dropdown-item" href="#">Action</a></li></ul>
+                                          </div>
+                                      </div>
+                                      <p class="card-text text-body-secondary small">${desc || "No description provided."}</p>
+                                      
+                                      <div class="d-flex justify-content-between align-items-end mt-4">
+                                          <div class="w-100 me-3">
+                                              <div class="d-flex justify-content-between mb-1">
+                                                  <span class="small fw-medium">Progress</span>
+                                                  <span class="small fw-bold">${progressVal}%</span>
+                                              </div>
+                                               <div class="progress" role="progressbar" style="height: 6px">
+                                                 <div class="progress-bar" style="width: ${progressVal}%"></div>
+                                             </div>
+                                          </div>
+                                          <div class="bg-body-secondary rounded p-2 text-center" style="min-width: 60px;">
+                                              <div class="small fw-bold">${month}</div>
+                                               <div class="fw-bold small text-muted">${year}</div>
+                                          </div>
+                                      </div>
+                                 </div>
+                                  <div class="card-footer bg-transparent border-0 pt-0 pb-3">
+                                     <div class="d-flex align-items-center">
+                                         <span class="small text-muted">Just added</span>
+                                     </div>
+                                 </div>
+                             </div>
+                          </div>
+                    `;
+
+          const grid = document.getElementById("projectGrid");
+          if (grid) grid.insertAdjacentHTML("beforeend", newCard);
+
+          const modalEl = document.getElementById("addProjectModal");
+          if (modalEl) {
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) modal.hide();
+          }
+          document.getElementById("addProjectForm").reset();
+        });
+      }
+    });
+  </script>
   </body>
 </html>

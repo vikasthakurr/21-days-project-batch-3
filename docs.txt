@@ -2,3 +2,5 @@ DOM: https://docs.google.com/document/d/1x6Grz7Wke-DoIQPzE-1T_EzL44pMn1FT62fnZPY
 
 
 Localstorage:https://www.geeksforgeeks.org/javascript/difference-between-local-storage-session-storage-and-cookies/
+
+ChartJS:https://www.chartjs.org/docs/latest/samples/other-charts/pie.html
