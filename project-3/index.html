@@ -770,8 +770,88 @@
               </div>
             </div>
           </div>
+
+
+          <!-- report section -->
+          <div class="d-flex align-items-center mb-4" id="reports">
+          <h4 class="fw-bold mb-0">Reports & Analytics</h4>
+        </div>
+        <div class="row g-4 mb-4">
+          <div class="col-md-7">
+            <div class="card border-0 shadow-sm h-100 rounded-4">
+              <div class="card-header bg-transparent border-0 pt-4 px-4">
+                <h5 class="fw-bold mb-0">Project Performance</h5>
+              </div>
+              <div class="card-body px-4 pb-4">
+                <canvas id="reportBar"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card border-0 shadow-sm h-100 rounded-4">
+              <div class="card-header bg-transparent border-0 pt-4 px-4">
+                <h5 class="fw-bold mb-0">Resource Distribution</h5>
+              </div>
+              <div class="card-body px-4 pb-4">
+                <canvas id="reportPie"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
         </main>
+    </div>
+    <!-- modal -->
+     <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title fw-bold">Create New Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-4">
+          <form id="addProjectForm">
+            <div class="mb-3">
+              <label class="form-label fw-medium">Project Name</label>
+              <input type="text" class="form-control bg-body-tertiary" id="projectName"
+                placeholder="e.g. Cloud Migration" required />
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-medium">Team</label>
+                <select class="form-select bg-body-tertiary" id="projectTeam">
+                  <option value="Backend">Backend</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="DevOps">DevOps</option>
+                  <option value="Data Science">Data Science</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-medium">Due Date</label>
+                <input type="month" class="form-control bg-body-tertiary" id="projectDue" required />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-medium">Current Progress</label>
+              <input type="range" class="form-range" id="projectProgress" min="0" max="100" value="0"
+                oninput="this.nextElementSibling.value = this.value + '%'" />
+              <output class="fw-bold small">0%</output>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-medium">Description</label>
+              <textarea class="form-control bg-body-tertiary" id="projectDescription" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-link text-decoration-none text-body-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary rounded-pill px-4" id="saveProjectBtn">
+            Create Project
+          </button>
+        </div>
       </div>
     </div>
+  </div>
   </body>
 </html>
