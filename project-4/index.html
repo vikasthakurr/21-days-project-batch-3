@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Tailwind CDN (no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- style -->
+    <style>
+      /* small extra polish not covered by tailwind utilities */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(6px);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px rgba(2, 6, 23, 0.08);
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      .no-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 999px;
+      }
+
+      .sr-only {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body class="antialiased text-slate-800 bg-slate-50">
+    <!-- navbar -->
+    <header
+      class="sticky top-0 z-50 bg-[#f9fafb] border-b border-slate-200 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- logo -->
+          <div class="flex items-center gap-6">
+            <a href="#home" class="flex items-center gap-2 group">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-bold shadow-sm group-hover:scale-105 transition-transform"
+              >
+                GfG
+              </div>
+              <div class="hidden sm:block">
+                <div class="text-lg font-semibold text-slate-800">
+                  GeeksforGeeks<span class="text-green-500"> Jobs</span>
+                </div>
+                <div class="text-xs text-slate-500 -mt-0.5">
+                  Jobs • Hiring • Careers
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>
