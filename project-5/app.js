@@ -313,3 +313,17 @@ refreshBtn.addEventListener("click", async () => {
   await syncClock();
   if (state.target) renderSlots(state.target.providerId, state.target.date);
 });
+
+//root function to run all function
+
+async function init() {
+  readBookings();
+  statBookings.textContent = state.bookings.length;
+  setMinDate();
+
+  //load provider
+  await Promise.all([fetchProviders(), syncClock()]);
+  renderBookings();
+}
+
+document.addEventListener("DOMContentLoaded", init);
