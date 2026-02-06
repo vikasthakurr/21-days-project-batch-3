@@ -118,3 +118,166 @@ async function syncClock() {
     )}`;
   }
 }
+
+
+function setMinDate() {
+  const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
+  dateInput.min = today;
+  dateInput.value = today;
+}
+
+function buildSlots(date) {
+  const slots = [];
+
+  for (let hour = 9; hour <= 17; hour++) {
+    ["00", "30"].forEach((minute) => {
+      const label = `${String(hour).padStart(2, "0")}:${minute}`; // 09:00, 09:30, etc.
+      slots.push(label);
+    });
+  }
+
+  // Convert each slot into an object with "disabled" flag
+  return slots.map((label) => ({
+    label,
+    disabled: isSlotDisabled(date, label),
+  }));
+}
+
+function isSlotDisabled(date, slotLabel) {
+  // Convert slot + date → JS Date()
+  const targetDate = new Date(`${date}T${slotLabel}:00+05:30`);
+  const now = state.nowUtc || new Date();
+
+  // Rule 1: cannot book past times
+  if (targetDate < now) return true;
+
+  // Rule 2: cannot book already-booked slot for same provider
+  const alreadyBooked = state.bookings.some(
+    (item) =>
+      item.date === date &&
+      item.slot === slotLabel &&
+      item.providerId === state.target?.providerId
+  );
+
+  return alreadyBooked;
+}
+
+
+function renderSlots(providerId, date) {
+  const provider = state.providers.find((p) => p.id === Number(providerId));
+
+  // If no provider or date selected → show placeholder
+  if (!provider || !date) {
+    slotsGrid.innerHTML = `<div class="col-12 text-center text-secondary">Select a provider and date to view availability.</div>`;
+    return;
+  }
+
+  // Save current selection in global state
+  state.target = { providerId: provider.id, providerName: provider.name, date };
+
+  // Update header info
+  slotsHeadline.textContent = `Slots for ${provider.name}`;
+  slotMeta.textContent = `${new Date(
+    date
+  ).toDateString()} • refreshed ${new Date().toLocaleTimeString("en-IN")}`;
+
+  const slots = buildSlots(date);
+
+  slotsGrid.innerHTML = "";
+
+  // Render each slot as a card
+  slots.forEach((slot) => {
+    const col = document.createElement("div");
+    col.className = "col-6 col-xl-4";
+
+    const card = document.createElement("div");
+    card.className = `slot-card h-100 ${slot.disabled ? "disabled" : ""}`;
+    card.innerHTML = `
+      <div class="fw-semibold">${slot.label}</div>
+      <div class="small text-secondary">${
+        slot.disabled ? "Unavailable" : "Tap to book"
+      }</div>
+    `;
+
+    // When available → clicking opens modal
+    if (!slot.disabled) {
+      card.onclick = () => openModal(provider, date, slot.label);
+    }
+
+    col.appendChild(card);
+    slotsGrid.appendChild(col);
+  });
+}
+
+
+function openModal(provider, date, slotLabel) {
+  state.pendingSlot = { provider, date, slotLabel };
+
+  confirmTitle.textContent = provider.name;
+  confirmMeta.textContent = `${date} · ${slotLabel} IST`;
+  notesInput.value = "";
+
+  confirmModal.show();
+}
+
+confirmBtn.addEventListener("click", () => {
+  if (!state.pendingSlot) return; // safety check
+
+  const payload = {
+    id: crypto.randomUUID(), // unique booking id
+    providerId: state.pendingSlot.provider.id,
+    provider: state.pendingSlot.provider.name,
+    specialty: state.pendingSlot.provider.specialty,
+    date: state.pendingSlot.date,
+    slot: state.pendingSlot.slotLabel,
+    notes: notesInput.value.trim(),
+  };
+
+  state.bookings.push(payload);
+
+  saveBookings(); // persist
+  renderSlots(state.pendingSlot.provider.id, state.pendingSlot.date);
+  renderBookings();
+  sendConfirmationEmail(payload); // optional API
+  confirmModal.hide();
+});
+
+function renderBookings() {
+  bookingsList.innerHTML = "";
+
+  // Empty state message
+  if (!state.bookings.length) {
+    bookingsList.innerHTML = `<div class="text-secondary small">No bookings yet.</div>`;
+    return;
+  }
+
+  // Sort by date+time for clean ordering
+  state.bookings
+    .slice()
+    .sort((a, b) => `${a.date}${a.slot}`.localeCompare(`${b.date}${b.slot}`))
+    .forEach((booking) => {
+      const card = document.createElement("div");
+      card.className = "booking-card";
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start gap-3">
+          <div>
+            <div class="fw-semibold">${booking.provider}</div>
+            <div class="small text-secondary">${booking.date} · ${
+        booking.slot
+      }</div>
+            <div class="small text-muted">${booking.notes || "No notes"}</div>
+          </div>
+
+          <button class="btn btn-sm btn-outline-danger" data-id="${booking.id}">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+      `;
+
+      // Remove booking on click
+      card.querySelector("button").onclick = () => cancelBooking(booking.id);
+
+      bookingsList.appendChild(card);
+    });
+}
