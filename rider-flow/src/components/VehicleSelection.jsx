@@ -87,7 +87,7 @@ const VehicleSelection = () => {
                   className={`vehicle-card-uber ${isSelected ? "vehicle-card-uber-selected" : ""}`}
                 >
                   {/* Vehicle Icon */}
-                  <div className="text-4xl flex-shrink-0">{vehicle.icon}</div>
+                  <div className="text-4xl shrink-0">{vehicle.icon}</div>
 
                   {/* Vehicle Info */}
                   <div className="flex-1 min-w-0">

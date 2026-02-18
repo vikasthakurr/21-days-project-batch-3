@@ -156,7 +156,7 @@ const LocationPicker = () => {
                         className="suggestion-item"
                       >
                         <div className="flex items-center gap-3">
-                          <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          <MapPin className="w-4 h-4 text-gray-400 shrink-0" />
                           <span className="text-sm">{location}</span>
                         </div>
                       </div>
