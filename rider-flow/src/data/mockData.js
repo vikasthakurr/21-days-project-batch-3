@@ -1,9 +1,18 @@
+// Mock data for the application
+
 export const mockLocations = [
-  "Noida",
-  "Airport",
-  "Delhi railway Stations",
-  "Lucknow railway",
-  "GeeksforGeeks sector 136",
+  "Downtown Plaza, 123 Main Street",
+  "Central Station, Railway Road",
+  "Airport Terminal 1",
+  "Shopping Mall, Park Avenue",
+  "Business District, Tower Street",
+  "University Campus, College Road",
+  "Riverside Park, Water Street",
+  "City Hospital, Medical Center",
+  "Tech Park, Innovation Drive",
+  "Beach Resort, Coastal Highway",
+  "Old Town Market, Heritage Lane",
+  "Sports Stadium, Victory Road",
 ];
 
 export const vehicleTypes = [

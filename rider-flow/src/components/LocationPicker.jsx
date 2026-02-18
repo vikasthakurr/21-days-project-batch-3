@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useBooking } from "../context/BookingContext";
 import { mockLocations } from "../data/mockData";
 import { MapPin, Navigation2 } from "lucide-react";
+import React from "react";
 
 const LocationPicker = () => {
   const navigate = useNavigate();

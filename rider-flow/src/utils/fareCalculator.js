@@ -1,10 +1,9 @@
 export const calculateDistance = (pickup, dropoff) => {
   if (!pickup || !dropoff) return 0;
 
-  //random distance
+  // Simulate random distance between 2-20 km
   const minDistance = 2;
   const maxDistance = 20;
-
   const distance =
     Math.floor(Math.random() * (maxDistance - minDistance + 1)) + minDistance;
 
@@ -25,7 +24,7 @@ export const calculateFare = (distance, vehicleType) => {
 export const calculateDuration = (distance) => {
   if (!distance) return 0;
 
-  const avgSpeed = 40;
+  const avgSpeed = 30; // km/h
   const hours = distance / avgSpeed;
   const minutes = Math.round(hours * 60);
 
@@ -36,8 +35,9 @@ export const formatDuration = (minutes) => {
   if (minutes < 60) {
     return `${minutes} min`;
   }
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes / 60;
 
-  return mins > 0 ? `${hours} h ${mins} min` : `${hours} h`;
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+
+  return mins > 0 ? `${hours}h ${mins}min` : `${hours}h`;
 };
