@@ -8,7 +8,7 @@ import {
   CheckCircle2,
   Clock,
 } from "lucide-react";
-import { formatDuration } from "../utils/fareCalculator";
+import { formatDuration } from "../utils/fareCalculator.js";
 
 const BookingConfirmation = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const BookingConfirmation = () => {
             {/* Route Indicator */}
             <div className="flex flex-col items-center mt-1">
               <div className="w-3 h-3 bg-white rounded-full"></div>
-              <div className="w-[2px] h-16 bg-uber-green my-1"></div>
+              <div className="w-0.5 h-16 bg-uber-green my-1"></div>
               <div className="w-3 h-3 bg-uber-green rounded-full"></div>
             </div>
 
